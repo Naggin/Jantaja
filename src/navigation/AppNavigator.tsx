@@ -57,8 +57,12 @@ export default function AppNavigator() {
     const unsub = onAuthStateChanged(auth, async (user) => {
       setUsuario(user);
       if (user) {
-        const id = await getCasalDoUsuario(user.uid);
-        setCasalId(id);
+        try {
+          const id = await getCasalDoUsuario(user.uid);
+          setCasalId(id);
+        } catch {
+          setCasalId(null);
+        }
       } else {
         setCasalId(undefined);
       }

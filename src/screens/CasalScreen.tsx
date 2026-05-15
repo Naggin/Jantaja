@@ -28,9 +28,14 @@ export default function CasalScreen({ uid, onCasalConfigurado }: Props) {
     try {
       const id = await criarCasal(uid);
       setCodigoCriado(id);
-      setModo('criar');
-    } catch {
-      Alert.alert('Erro', 'Não foi possível criar o casal');
+      Alert.alert(
+        '🎉 Casal criado!',
+        `Compartilhe este código com seu parceiro(a) para ele(a) entrar:\n\n${id}\n\nVocê pode acessar o código depois nas configurações.`,
+        [{ text: 'Entrar no app →', onPress: () => onCasalConfigurado(id) }]
+      );
+    } catch (e: any) {
+      console.error('Erro ao criar casal:', e);
+      Alert.alert('Erro', 'Não foi possível criar o casal. Verifique sua conexão e tente novamente.');
     } finally {
       setCarregando(false);
     }
