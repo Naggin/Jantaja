@@ -10,7 +10,6 @@ import { getCasalDoUsuario } from '../services/auth';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SugestaoScreen from '../screens/SugestaoScreen';
-import AprovacaoScreen from '../screens/AprovacaoScreen';
 import ComprasScreen from '../screens/ComprasScreen';
 import CasalScreen from '../screens/CasalScreen';
 
@@ -20,7 +19,7 @@ const Stack = createStackNavigator();
 function MainTabs({ casalId }: { casalId: string }) {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="Início" children={() => <HomeScreen casalId={casalId} />} />
+      <Tab.Screen name="Swipe" children={() => <HomeScreen casalId={casalId} />} />
       <Tab.Screen name="Compras" children={() => <ComprasScreen casalId={casalId} />} />
     </Tab.Navigator>
   );
@@ -37,12 +36,11 @@ function AppStack({ casalId }: { casalId: string }) {
       <Stack.Screen
         name="Sugestao"
         component={SugestaoScreen}
-        options={{ title: 'Sugerir jantar', headerStyle: { backgroundColor: '#4CAF50' }, headerTintColor: '#fff' }}
-      />
-      <Stack.Screen
-        name="Aprovacao"
-        component={AprovacaoScreen}
-        options={{ title: 'Jantar sugerido', headerStyle: { backgroundColor: '#4CAF50' }, headerTintColor: '#fff' }}
+        options={{
+          title: 'Sugerir prato',
+          headerStyle: { backgroundColor: '#4CAF50' },
+          headerTintColor: '#fff',
+        }}
       />
     </Stack.Navigator>
   );
